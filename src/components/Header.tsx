@@ -9,7 +9,7 @@ const Header = ({ className }: Props) => {
   return (
     <header className={`bg-customBlack p-4 ${className}`}>
       <div className="flex items-center gap-2">
-        <p className="text-white text-2xl">Todo List</p>
+        <p className="text-white text-3xl font-bold">Todo List</p>
         <BiTask className="text-white text-3xl" />
       </div>
     </header>
