@@ -31,7 +31,7 @@ const Modal = ({ children, open, onClose, className }: Props) => {
           >
             <MdClose
               onClick={handleButtonClose}
-              className="absolute top-4 right-4"
+              className="absolute top-2 right-2 cursor-pointer text-3xl"
             />
             {children}
           </div>
