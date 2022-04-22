@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         customBlack: "#14213d",
+        "customBlack-2": "#2b2d42",
       },
     },
   },
