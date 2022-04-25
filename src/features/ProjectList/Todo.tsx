@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { useAppDispatch } from "../../app/hooks";
 import { EditTodoModal } from "./EditTodoModal";
 import { deleteTodo, toggleCompleteTodo, editTodo } from "./projectListSlice";
+import { TodoDetailsModal } from "./TodoDetailsModal";
 
 type TodoPriority = "low" | "medium" | "high";
 
@@ -17,10 +18,15 @@ export interface ITodo {
   projectName: string;
 }
 
+type ModalType = "details" | "edit"
+
 const Todo = (props: ITodo) => {
   const { completed, dueDate, id, priority, title } = props;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    details: false,
+    edit: false,
+  });
 
   const dispatch = useAppDispatch();
 
@@ -42,11 +48,17 @@ const Todo = (props: ITodo) => {
     else if (priority === "high") return "border-l-red-500";
   };
 
-  const handleOpenModal = () => {
-    setOpen(true);
+  const handleOpenModal = (modal: ModalType) => {
+    setOpen((prevState) => ({
+      ...prevState,
+      [modal]: true,
+    }));
   };
-  const handleCloseModal = () => {
-    setOpen(false);
+  const handleCloseModal = (modal: ModalType) => {
+    setOpen((prevState) => ({
+      ...prevState,
+      [modal]: false,
+    }));
   };
 
   return (
@@ -65,11 +77,14 @@ const Todo = (props: ITodo) => {
         />
         <p className="text-xl flex-1">{title}</p>
         <div className="flex items-center gap-3">
-          <button className="text-sky-700 border-2 border-sky-700 rounded px-3 text-lg hover:bg-sky-700 hover:text-white">
+          <button
+            onClick={() => handleOpenModal("details")}
+            className="text-sky-700 border-2 border-sky-700 rounded px-3 text-lg hover:bg-sky-700 hover:text-white"
+          >
             Details
           </button>
           <p className="text-lg">{dueDate}</p>
-          <button className="edit-todo" onClick={handleOpenModal}>
+          <button className="edit-todo" onClick={() => handleOpenModal("edit")}>
             <MdEdit className="text-sky-700 text-xl" />
           </button>
           <button className="delete-todo" onClick={handleDelete}>
@@ -78,10 +93,15 @@ const Todo = (props: ITodo) => {
         </div>
       </div>
       <EditTodoModal
-        onClose={handleCloseModal}
-        open={open}
+        onClose={() => handleCloseModal("edit")}
+        open={open.edit}
         Todo={props}
         editTodo={handleEditTodo}
+      />
+      <TodoDetailsModal
+        todo={props}
+        open={open.details}
+        onClose={() => handleCloseModal("details")}
       />
     </>
   );
