@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { EditTodoModal } from "./EditTodoModal";
 import { deleteTodo, toggleCompleteTodo, editTodo } from "./projectListSlice";
 import { TodoDetailsModal } from "./TodoDetailsModal";
+import { format } from 'date-fns'
 
 type TodoPriority = "low" | "medium" | "high";
 
@@ -83,7 +84,7 @@ const Todo = (props: ITodo) => {
           >
             Details
           </button>
-          <p className="text-lg">{dueDate}</p>
+          <p className="text-lg">{dueDate ? format(new Date(dueDate), "dd-MM-yyyy") : ""}</p>
           <button className="edit-todo" onClick={() => handleOpenModal("edit")}>
             <MdEdit className="text-sky-700 text-xl" />
           </button>
