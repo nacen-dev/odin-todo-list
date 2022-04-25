@@ -58,6 +58,17 @@ export const projectListSlice = createSlice({
         (todoList) => todoList.name !== action.payload.projectName
       );
     },
+    editProjectName: (
+      state,
+      action: PayloadAction<{ projectName: string; newName: string }>
+    ) => {
+      let project = state.find(
+        (project) => project.name === action.payload.projectName
+      );
+      if (project) {
+        project.name = action.payload.newName;
+      }
+    },
     addTodo: (state, action: PayloadAction<ITodo>) => {
       state
         .find((todoList) => todoList.name === action.payload.projectName)
@@ -73,15 +84,16 @@ export const projectListSlice = createSlice({
         );
       }
     },
-    editProjectName: (
-      state,
-      action: PayloadAction<{ projectName: string; newName: string }>
-    ) => {
-      let project = state.find(
-        (project) => project.name === action.payload.projectName
-      );
+    editTodo: (state, action: PayloadAction<ITodo>) => {
+      let project = state.find((p) => p.name === action.payload.projectName);
       if (project) {
-        project.name = action.payload.newName;
+        project.todoList = project.todoList.map((todo) => {
+          console.log(action.payload.id, todo.id);
+          if (todo.id === action.payload.id) {
+            return action.payload;
+          }
+          return todo;
+        });
       }
     },
     toggleCompleteTodo: (state, action: PayloadAction<ITodo>) => {
@@ -104,7 +116,8 @@ export const {
   editProjectName,
   addTodoList,
   removeTodoList,
-  toggleCompleteTodo
+  toggleCompleteTodo,
+  editTodo,
 } = projectListSlice.actions;
 
 export const selectProjectList = (state: RootState) => state.projectList;
