@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdDelete } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { changeActiveContent } from "../activeContent/activeContentSlice";
-import { addProject, selectProjectList } from "./projectListSlice";
+import {
+  addProject,
+  removeProject,
+  selectProjectList,
+} from "./projectListSlice";
 
 interface Props {}
 
@@ -31,16 +35,26 @@ const ProjectList = (props: Props) => {
     setProjectName("");
   };
 
+  const handleRemoveProject = (projectName: string) => {
+    dispatch(removeProject({ projectName: projectName }));
+    console.log("Removed")
+  };
+
   return (
     <div>
       <ul className="flex flex-col gap-2 ml-4 my-2">
         {projectList.map((project) => (
-          <li
-            key={project.name}
-            onClick={() => handleChangeContent(project.name)}
-            className="text-white cursor-pointer text-xl"
-          >
-            {project.name}
+          <li key={project.name} className=" flex justify-between items-center">
+            <p
+              className="text-white cursor-pointer text-xl"
+              onClick={() => handleChangeContent(project.name)}
+            >
+              {project.name}
+            </p>
+            <MdDelete
+              onClick={() => handleRemoveProject(project.name)}
+              className="text-red-600 text-xl cursor-pointer"
+            />
           </li>
         ))}
       </ul>
