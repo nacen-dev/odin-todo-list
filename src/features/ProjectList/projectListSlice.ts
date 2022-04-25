@@ -50,12 +50,12 @@ export const projectListSlice = createSlice({
   name: "projectList",
   initialState: initialState,
   reducers: {
-    addTodoList: (state, action: PayloadAction<IProject>) => {
+    addProject: (state, action: PayloadAction<IProject>) => {
       state.push(action.payload);
     },
-    removeTodoList: (state, action: PayloadAction<{ projectName: string }>) => {
+    removeProject: (state, action: PayloadAction<{ projectName: string }>) => {
       state = state.filter(
-        (todoList) => todoList.name !== action.payload.projectName
+        (project) => project.name !== action.payload.projectName
       );
     },
     editProjectName: (
@@ -114,8 +114,8 @@ export const {
   addTodo,
   deleteTodo,
   editProjectName,
-  addTodoList,
-  removeTodoList,
+  addProject,
+  removeProject,
   toggleCompleteTodo,
   editTodo,
 } = projectListSlice.actions;
