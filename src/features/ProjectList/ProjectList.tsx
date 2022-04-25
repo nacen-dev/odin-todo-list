@@ -19,10 +19,16 @@ const ProjectList = (props: Props) => {
   const handleAddNewProject = (projectName: string) => {
     dispatch(addProject({ name: projectName, todoList: [] }));
     setIsInputOpen(false);
+    setProjectName("");
   };
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProjectName(event.target.value);
+  };
+
+  const handleCancelProject = () => {
+    setIsInputOpen(false);
+    setProjectName("");
   };
 
   return (
@@ -63,7 +69,7 @@ const ProjectList = (props: Props) => {
               Add
             </button>
             <button
-              onClick={() => setIsInputOpen(false)}
+              onClick={handleCancelProject}
               className="rounded text-lg w-full bg-red-600 text-white"
             >
               Cancel
