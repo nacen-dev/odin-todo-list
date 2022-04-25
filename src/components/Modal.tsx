@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-type Props = {
+export interface IModal {
   open: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClose: () => void;
   className?: string;
 };
 
-const Modal = ({ children, open, onClose, className }: Props) => {
+const Modal = ({ children, open, onClose, className }: IModal) => {
   if (!open) return null;
 
   let portalDiv = document.getElementById("portal");
