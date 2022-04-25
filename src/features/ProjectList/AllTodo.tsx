@@ -2,9 +2,11 @@ import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { changeActiveContent } from "../activeContent/activeContentSlice";
 
-interface Props {}
+interface Props {
+  className?: string;
+}
 
-const AllTodo = (props: Props) => {
+const AllTodo = ({className}: Props) => {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
@@ -12,7 +14,7 @@ const AllTodo = (props: Props) => {
   };
 
   return (
-    <h2 className="text-white text-2xl font-bold cursor-pointer" onClick={handleClick}>All Todo's</h2>
+    <h2 className={`text-white text-2xl font-bold cursor-pointer ${className}`} onClick={handleClick}>All Todo's</h2>
   );
 };
 
