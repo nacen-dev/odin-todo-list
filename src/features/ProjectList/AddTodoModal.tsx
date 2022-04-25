@@ -17,27 +17,6 @@ const AddTodoModal = ({
   className,
   addTodo,
 }: Props) => {
-  const [todoInput, setTodoInput] = useState<ITodo>({
-    id: nanoid(),
-    completed: false,
-    description: "",
-    dueDate: "",
-    priority: "low",
-    projectName: projectName,
-    title: "",
-  });
-
-  const resetTodoInput = () => {
-    setTodoInput({
-      id: nanoid(),
-      completed: false,
-      description: "",
-      dueDate: "",
-      priority: "low",
-      projectName: projectName,
-      title: "",
-    });
-  };
 
   const handleAddTodo = (todo: ITodo) => {
     addTodo(todo);
