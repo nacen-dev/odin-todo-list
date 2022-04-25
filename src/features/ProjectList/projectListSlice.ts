@@ -1,50 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
 import { RootState } from "../../app/store";
 import { IProject } from "./Project";
 import { ITodo } from "./Todo";
 
 export type ProjectListState = Array<IProject>;
 
-const initialState: ProjectListState = [
-  {
-    name: "Home",
-    todoList: [
-      {
-        id: nanoid(),
-        completed: false,
-        description: "",
-        dueDate: "",
-        priority: "high",
-        title: "Todo-01",
-        projectName: "Home",
-      },
-      {
-        id: nanoid(),
-        completed: false,
-        description: "",
-        dueDate: "",
-        priority: "medium",
-        title: "Todo-02",
-        projectName: "Home",
-      },
-    ],
-  },
-  {
-    name: "Work",
-    todoList: [
-      {
-        id: nanoid(),
-        completed: false,
-        description: "",
-        dueDate: "",
-        priority: "low",
-        title: "Todo-Work-01",
-        projectName: "Work",
-      },
-    ],
-  },
-];
+const initialState: ProjectListState = [];
 
 export const projectListSlice = createSlice({
   name: "projectList",
@@ -123,6 +84,10 @@ export const {
 export const selectProjectList = (state: RootState) => state.projectList;
 export const selectProjectNames = (state: RootState) => {
   return state.projectList.map((project) => project.name);
+};
+
+export const selectAllTodo = (state: RootState) => {
+  return state.projectList.flatMap((project) => project.todoList);
 };
 
 export default projectListSlice.reducer;
