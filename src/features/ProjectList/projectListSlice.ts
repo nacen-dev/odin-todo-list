@@ -54,7 +54,7 @@ export const projectListSlice = createSlice({
       state.push(action.payload);
     },
     removeProject: (state, action: PayloadAction<{ projectName: string }>) => {
-      state = state.filter(
+      return state.filter(
         (project) => project.name !== action.payload.projectName
       );
     },
