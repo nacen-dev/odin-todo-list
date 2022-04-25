@@ -1,14 +1,11 @@
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { Modal } from "../../components/Modal";
+import { IModal, Modal } from "../../components/Modal";
 import { ITodo } from "./Todo";
 import { MdClose } from "react-icons/md";
 import { TodoForm } from "./TodoForm";
 
-type Props = {
-  open: boolean;
-  onClose: () => void;
-  className?: string;
+interface Props extends IModal {
   projectName: string;
   addTodo: (todo: ITodo) => void;
 };

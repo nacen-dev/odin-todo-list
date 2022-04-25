@@ -1,13 +1,10 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
-import { Modal } from "../../components/Modal";
+import { IModal, Modal } from "../../components/Modal";
 import { ITodo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-  className?: string;
+interface Props extends IModal {
   Todo: ITodo;
   editTodo: (Todo: ITodo) => void;
 }
