@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
+import { useAppSelector } from "../../app/hooks";
+import { selectProjectNames } from "./projectListSlice";
 import { ITodo } from "./Todo";
 
 interface Props {
@@ -10,13 +12,15 @@ interface Props {
 }
 
 const TodoForm = ({ onSubmit, formButtonText, projectName, Todo }: Props) => {
+  const projectNames = useAppSelector(selectProjectNames);
+
   const initialState: ITodo = {
     id: nanoid(),
     completed: false,
     description: "",
     dueDate: "",
     priority: "low",
-    projectName: projectName,
+    projectName: projectName ? projectName : projectNames[0],
     title: "",
   };
 
@@ -24,11 +28,20 @@ const TodoForm = ({ onSubmit, formButtonText, projectName, Todo }: Props) => {
   const [errorOnInput, setErrorOnInput] = useState(false);
 
   const validateInput = () => {
-    return todoInput.title !== "" ? true : false;
+    if (
+      todoInput.title &&
+      todoInput.projectName &&
+      /\d{4}-\d{2}-\d{2}/.test(todoInput.dueDate)
+    ) {
+      return true;
+    }
+    return false;
   };
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setTodoInput((prevTodoInput) => ({
       ...prevTodoInput,
@@ -79,6 +92,31 @@ const TodoForm = ({ onSubmit, formButtonText, projectName, Todo }: Props) => {
           className="px-2 border border-slate-600 hover:border-customBlack focus:border-customBlack w-full rounded"
         />
       </div>
+
+      <div>
+        <label
+          className={`text-xl ${errorOnInput && "text-red-700"}`}
+          htmlFor="projectNameDropdown"
+        >
+          Project: *{" "}
+        </label>
+        <select
+          id="projectNameDropdown"
+          className="border border-slate-600"
+          name="projectName"
+          value={todoInput.projectName}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Project</option>
+          {projectNames.map((projectName) => (
+            <option key={projectName} value={projectName}>
+              {projectName}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div>
         <label htmlFor="description" className="text-xl">
           Description:
@@ -101,6 +139,7 @@ const TodoForm = ({ onSubmit, formButtonText, projectName, Todo }: Props) => {
           value={todoInput.dueDate}
           onChange={handleChange}
           name="dueDate"
+          required
         />
       </div>
       <div className="flex justify-between items-center">
