@@ -3,7 +3,7 @@ import { RootState } from "../../app/store";
 
 export interface ActiveContent {
   id: string;
-  type: "Project";
+  type: "Project" | "AllTodos";
 }
 
 const initialState: ActiveContent = {
