@@ -28,7 +28,7 @@ const Project = ({ name, todoList }: IProject) => {
         {todoList.map((todo) => (
           <li key={todo.id}>
             <Todo
-              projectName={name}
+              projectName={todo.projectName}
               id={todo.id}
               completed={todo.completed}
               description={todo.description}
