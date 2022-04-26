@@ -6,6 +6,9 @@ module.exports = {
         customBlack: "#14213d",
         "black-rgba": "rgba(0, 0, 0, 0.7)",
       },
+      screens: {
+        "md-max": { max:  "767px" },
+      },
     },
   },
   plugins: [],
