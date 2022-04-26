@@ -18,7 +18,7 @@ const Content = (props: Props) => {
   const allTodo = useAppSelector(selectAllTodo);
 
   return (
-    <main className="bg-slate-600 h-screen p-4">
+    <main className="bg-slate-600 p-4 overflow-y-auto">
       {selectContent ? (
         <Project name={selectContent.name} todoList={selectContent.todoList} />
       ) : <Project name="" todoList={allTodo} />}
