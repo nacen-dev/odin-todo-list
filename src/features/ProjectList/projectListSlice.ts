@@ -49,7 +49,6 @@ export const projectListSlice = createSlice({
       let project = state.find((p) => p.name === action.payload.projectName);
       if (project) {
         project.todoList = project.todoList.map((todo) => {
-          console.log(action.payload.id, todo.id);
           if (todo.id === action.payload.id) {
             return action.payload;
           }

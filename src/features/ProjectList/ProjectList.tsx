@@ -37,7 +37,6 @@ const ProjectList = (props: Props) => {
 
   const handleRemoveProject = (projectName: string) => {
     dispatch(removeProject({ projectName: projectName }));
-    console.log("Removed")
   };
 
   return (

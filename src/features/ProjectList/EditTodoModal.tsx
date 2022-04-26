@@ -16,7 +16,6 @@ const EditTodoModal = ({ open, onClose, className, Todo, editTodo }: Props) => {
   };
 
   const handleEdit = (todo: ITodo) => {
-    console.log(todo);
     editTodo(todo);
     onClose();
   }
