@@ -1,6 +1,6 @@
 {
   "name": "todo-list",
-  "homepage": "nacen.github.io/odin-todo-list",
+  "homepage": "nacen-dev.github.io/odin-todo-list",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
