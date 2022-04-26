@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/nacen.github.io/odin-todo-list/static/css/main.3d93115a.css",
-    "main.js": "/nacen.github.io/odin-todo-list/static/js/main.00c8715c.js",
-    "index.html": "/nacen.github.io/odin-todo-list/index.html",
-    "main.3d93115a.css.map": "/nacen.github.io/odin-todo-list/static/css/main.3d93115a.css.map",
-    "main.00c8715c.js.map": "/nacen.github.io/odin-todo-list/static/js/main.00c8715c.js.map"
+    "main.css": "/nacen-dev.github.io/odin-todo-list/static/css/main.3d93115a.css",
+    "main.js": "/nacen-dev.github.io/odin-todo-list/static/js/main.00c8715c.js",
+    "index.html": "/nacen-dev.github.io/odin-todo-list/index.html",
+    "main.3d93115a.css.map": "/nacen-dev.github.io/odin-todo-list/static/css/main.3d93115a.css.map",
+    "main.00c8715c.js.map": "/nacen-dev.github.io/odin-todo-list/static/js/main.00c8715c.js.map"
   },
   "entrypoints": [
     "static/css/main.3d93115a.css",
