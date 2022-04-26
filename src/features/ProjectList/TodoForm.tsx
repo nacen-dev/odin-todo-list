@@ -142,7 +142,7 @@ const TodoForm = ({ onSubmit, formButtonText, projectName, Todo }: Props) => {
           required
         />
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center md-max:grid md-max:grid-rows-[1fr] md-max:grid-cols-1 gap-2">
         <div className="flex gap-2 items-center">
           <label className="text-xl">Priority:</label>
           <div>
