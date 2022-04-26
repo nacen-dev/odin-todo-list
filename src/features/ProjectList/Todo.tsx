@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { EditTodoModal } from "./EditTodoModal";
 import { deleteTodo, toggleCompleteTodo, editTodo } from "./projectListSlice";
 import { TodoDetailsModal } from "./TodoDetailsModal";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 type TodoPriority = "low" | "medium" | "high";
 
@@ -19,7 +19,7 @@ export interface ITodo {
   projectName: string;
 }
 
-type ModalType = "details" | "edit"
+type ModalType = "details" | "edit";
 
 const Todo = (props: ITodo) => {
   const { completed, dueDate, id, priority, title } = props;
@@ -65,18 +65,21 @@ const Todo = (props: ITodo) => {
   return (
     <>
       <div
-        className={`flex p-4 items-center gap-2 bg-slate-100 rounded-md rounded-l-none border-l-4 ${priorityColor(
+        className={`grid grid-cols-[1fr_auto] p-4 items-center gap-2 bg-slate-100 rounded-md rounded-l-none border-l-4 ${priorityColor(
           priority
         )}`}
       >
-        <input
-          type="checkbox"
-          name="completed"
-          id={id}
-          checked={completed}
-          onChange={handleToggleCompleteTodo}
-        />
-        <p className="text-xl flex-1">{title}</p>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="completed"
+            id={id}
+            checked={completed}
+            onChange={handleToggleCompleteTodo}
+          />
+          <p className="text-xl flex-1">{title}</p>
+        </div>
+
         <div className="flex items-center gap-3">
           <button
             onClick={() => handleOpenModal("details")}
@@ -84,7 +87,9 @@ const Todo = (props: ITodo) => {
           >
             Details
           </button>
-          <p className="text-lg">{dueDate ? format(new Date(dueDate), "dd-MM-yyyy") : ""}</p>
+          <p className="text-lg md-max:hidden">
+            {dueDate ? format(new Date(dueDate), "dd-MM-yyyy") : ""}
+          </p>
           <button className="edit-todo" onClick={() => handleOpenModal("edit")}>
             <MdEdit className="text-sky-700 text-xl" />
           </button>

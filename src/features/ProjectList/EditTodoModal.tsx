@@ -22,7 +22,7 @@ const EditTodoModal = ({ open, onClose, className, Todo, editTodo }: Props) => {
   }
 
   return (
-    <Modal open={open} onClose={onClose} className={`w-[60%] ${className} `}>
+    <Modal open={open} onClose={onClose} className={`md-max:w-[80%] md:w-[60%] ${className} `}>
       <header className="bg-customBlack p-4 flex justify-between items-center">
         <p className="text-white text-2xl">Edit Todo</p>
         <MdClose
